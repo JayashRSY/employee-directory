@@ -5,11 +5,12 @@
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">    
     <title>Employee Directory</title>
 </head>
 
 <body>
-    <header class="container-fluid text-bg-dark p-2 text-center">
+    <header class="text-bg-dark p-2 text-center">
         <h4>Gemini Solutions</h4>
     </header>
 
@@ -17,32 +18,33 @@
         <div class="col-md-12 col-lg-6 bg-danger d-flex justify-content-center">
             <form class="bg-dark m-5 p-5" style="height: 380px; width: 350px;">
                 <div class="row my-2">
-                    <input class="form-control" type="text" placeholder="First name" required>
+                    <input id="fname" class="form-control" type="text" placeholder="First name (Required)">
                 </div>
                 <div class="row my-2">
-                    <input class="form-control" type="text" placeholder="Last name" required>
+                    <input id="lname" class="form-control" type="text" placeholder="Last name">
                 </div>
                 <div class="row my-2">
-                    <input class="form-control" type="email" placeholder="Email" required>
+                    <input id="email" class="form-control" type="text" placeholder="Email (Required)">
                 </div>
                 <div class="row my-2">
                     <select id="gender" class="form-select">
-                        <option selected>Select Gender</option>
-                        <option>Male</option>
-                        <option>Female</option>
+                        <option value="none">Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
                     </select>
                 </div>
                 <div class="row my-2">
-                    <input class="form-control" type="number" placeholder="Mobile Number">
+                    <input id="mobile" class="form-control" type="text" placeholder="Mobile Number">
                 </div>
                 <div class="row my-2">
-                    <button class="btn btn-primary" type="submit">Submit</button>
+                    <button id="add-btn" class="btn btn-primary">Add Details</button>
+                    <button id="save-btn" class="btn btn-primary hide">Save Changes</button>
                 </div>
             </form>
         </div>
-        <div class="col-md-12 col-lg-6 bg-warning d-flex justify-content-center">
+        <div class="col-md-12 col-lg-6 bg-warning">
             <div class="table-responsive"></div>
-            <table class="table bg-info w-50 mt-5">
+            <table class="table bg-info">
                 <thead>
                     <tr>
                         <th scope="col">First Name</th>
@@ -53,193 +55,35 @@
                         <th scope="col">Actions</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="table-body">
                     <tr>
-                        <td>John</td>
-                        <td>Rakon</td>
-                        <td>johnrakon@gmail.com</td>
-                        <td>Male</td>
-                        <td>8077151158</td>
-                        <td class="text-center"><img height="20px" src="img/edit.png" alt="edit"> <img height="20px" src="img/bin.png" alt="delete"></td>
+                        <td class="fname">John</td>
+                        <td class="lname">Rakon</td>
+                        <td class="email">johnrakon @gmail.com</td>
+                        <td class="gender">Male</td>
+                        <td class="mobile">8077151158</td>
+                        <td class="text-center">
+                            <img class="actions"src="img/edit.png" alt="edit" onclick="editEmp(this)"> <img class="actions" src="img/bin.png" alt="delete" onclick="deleteEmp(this)">
+                        </td>
                     </tr>
                     <tr>
                         <td>Arya</td>
                         <td>Singh</td>
-                        <td>ram124@gmail.com</td>
+                        <td>ram124 @gmail.com</td>
                         <td>Female</td>
                         <td>5461239782</td>
-                        <td><img height="20px" src="img/edit.png" alt="edit"><img height="20px" src="img/bin.png" alt="delete"></td>
+                        <td class="text-center">
+                            <img class="actions"src="img/edit.png" alt="edit" onclick="editEmp(this)"> <img class="actions" src="img/bin.png" alt="delete" onclick="deleteEmp(this)">
+                        </td>
                     </tr>
                 </tbody>
-                <tbody>
-                    <tr>
-                        <td>John</td>
-                        <td>Rakon</td>
-                        <td>johnrakon@gmail.com</td>
-                        <td>Male</td>
-                        <td>8077151158</td>
-                        <td><img height="20px" src="img/edit.png" alt="edit"><img height="20px" src="img/bin.png" alt="delete"></td>
-                    </tr>
-                    <tr>
-                        <td>Arya</td>
-                        <td>Singh</td>
-                        <td>ram124@gmail.com</td>
-                        <td>Female</td>
-                        <td>5461239782</td>
-                        <td><img height="20px" src="img/edit.png" alt="edit"><img height="20px" src="img/bin.png" alt="delete"></td>
-                    </tr>
-                </tbody>
-                <tbody>
-                    <tr>
-                        <td>John</td>
-                        <td>Rakon</td>
-                        <td>johnrakon@gmail.com</td>
-                        <td>Male</td>
-                        <td>8077151158</td>
-                        <td><img height="20px" src="img/edit.png" alt="edit"><img height="20px" src="img/bin.png" alt="delete"></td>
-                    </tr>
-                    <tr>
-                        <td>Arya</td>
-                        <td>Singh</td>
-                        <td>ram124@gmail.com</td>
-                        <td>Female</td>
-                        <td>5461239782</td>
-                        <td><img height="20px" src="img/edit.png" alt="edit"><img height="20px" src="img/bin.png" alt="delete"></td>
-                    </tr>
-                </tbody>
-                <tbody>
-                    <tr>
-                        <td>John</td>
-                        <td>Rakon</td>
-                        <td>johnrakon@gmail.com</td>
-                        <td>Male</td>
-                        <td>8077151158</td>
-                        <td><img height="20px" src="img/edit.png" alt="edit"><img height="20px" src="img/bin.png" alt="delete"></td>
-                    </tr>
-                    <tr>
-                        <td>Arya</td>
-                        <td>Singh</td>
-                        <td>ram124@gmail.com</td>
-                        <td>Female</td>
-                        <td>5461239782</td>
-                        <td><img height="20px" src="img/edit.png" alt="edit"><img height="20px" src="img/bin.png" alt="delete"></td>
-                    </tr>
-                </tbody>
-                <tbody>
-                    <tr>
-                        <td>John</td>
-                        <td>Rakon</td>
-                        <td>johnrakon@gmail.com</td>
-                        <td>Male</td>
-                        <td>8077151158</td>
-                        <td><img height="20px" src="img/edit.png" alt="edit"><img height="20px" src="img/bin.png" alt="delete"></td>
-                    </tr>
-                    <tr>
-                        <td>Arya</td>
-                        <td>Singh</td>
-                        <td>ram124@gmail.com</td>
-                        <td>Female</td>
-                        <td>5461239782</td>
-                        <td><img height="20px" src="img/edit.png" alt="edit"><img height="20px" src="img/bin.png" alt="delete"></td>
-                    </tr>
-                </tbody>
-                <tbody>
-                    <tr>
-                        <td>John</td>
-                        <td>Rakon</td>
-                        <td>johnrakon@gmail.com</td>
-                        <td>Male</td>
-                        <td>8077151158</td>
-                        <td><img height="20px" src="img/edit.png" alt="edit"><img height="20px" src="img/bin.png" alt="delete"></td>
-                    </tr>
-                    <tr>
-                        <td>Arya</td>
-                        <td>Singh</td>
-                        <td>ram124@gmail.com</td>
-                        <td>Female</td>
-                        <td>5461239782</td>
-                        <td><img height="20px" src="img/edit.png" alt="edit"><img height="20px" src="img/bin.png" alt="delete"></td>
-                    </tr>
-                </tbody>
-                <tbody>
-                    <tr>
-                        <td>John</td>
-                        <td>Rakon</td>
-                        <td>johnrakon@gmail.com</td>
-                        <td>Male</td>
-                        <td>8077151158</td>
-                        <td><img height="20px" src="img/edit.png" alt="edit"><img height="20px" src="img/bin.png" alt="delete"></td>
-                    </tr>
-                    <tr>
-                        <td>Arya</td>
-                        <td>Singh</td>
-                        <td>ram124@gmail.com</td>
-                        <td>Female</td>
-                        <td>5461239782</td>
-                        <td><img height="20px" src="img/edit.png" alt="edit"><img height="20px" src="img/bin.png" alt="delete"></td>
-                    </tr>
-                </tbody>
-                <tbody>
-                    <tr>
-                        <td>John</td>
-                        <td>Rakon</td>
-                        <td>johnrakon@gmail.com</td>
-                        <td>Male</td>
-                        <td>8077151158</td>
-                        <td><img height="20px" src="img/edit.png" alt="edit"><img height="20px" src="img/bin.png" alt="delete"></td>
-                    </tr>
-                    <tr>
-                        <td>Arya</td>
-                        <td>Singh</td>
-                        <td>ram124@gmail.com</td>
-                        <td>Female</td>
-                        <td>5461239782</td>
-                        <td><img height="20px" src="img/edit.png" alt="edit"><img height="20px" src="img/bin.png" alt="delete"></td>
-                    </tr>
-                </tbody>
-                <tbody>
-                    <tr>
-                        <td>John</td>
-                        <td>Rakon</td>
-                        <td>johnrakon@gmail.com</td>
-                        <td>Male</td>
-                        <td>8077151158</td>
-                        <td><img height="20px" src="img/edit.png" alt="edit"><img height="20px" src="img/bin.png" alt="delete"></td>
-                    </tr>
-                    <tr>
-                        <td>Arya</td>
-                        <td>Singh</td>
-                        <td>ram124@gmail.com</td>
-                        <td>Female</td>
-                        <td>5461239782</td>
-                        <td><img height="20px" src="img/edit.png" alt="edit"><img height="20px" src="img/bin.png" alt="delete"></td>
-                    </tr>
-                </tbody>
-                <tbody>
-                    <tr>
-                        <td>John</td>
-                        <td>Rakon</td>
-                        <td>johnrakon@gmail.com</td>
-                        <td>Male</td>
-                        <td>8077151158</td>
-                        <td><img height="20px" src="img/edit.png" alt="edit"><img height="20px" src="img/bin.png" alt="delete"></td>
-                    </tr>
-                    <tr>
-                        <td>Arya</td>
-                        <td>Singh</td>
-                        <td>ram124@gmail.com</td>
-                        <td>Female</td>
-                        <td>5461239782</td>
-                        <td><img height="20px" src="img/edit.png" alt="edit"><img height="20px" src="img/bin.png" alt="delete"></td>
-                    </tr>
-                </tbody>
-
             </table>
-            </div>
+        </div>
         </div>
     </main>
 
-    
+
+
     <script src="script.js"></script>
 </body>
 
