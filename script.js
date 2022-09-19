@@ -35,7 +35,10 @@ addBtn.addEventListener('click', (e) => {
         empData["gender"] = gender
         empData["mobile"] = mobile
 
-        createEmp(empData);
+        createEmp(empData)
+        alert("Employee added Successfully")
+        
+        emptyForm()
     }
 
     e.preventDefault()
@@ -56,16 +59,14 @@ function createEmp(empData) {
         </td>
     </tr>
     `
-
+    //SAVING TO LOCAL STORAGE
+    saveToLocal(empData)
     document.getElementById("table-body").append(newEmp)
-    alert("Employee added Successfully")
-    emptyForm()
 }
 var empInChange = ""
 //SAVE EMP CHANGES
 var saveBtn = document.getElementById("save-btn")
 saveBtn.addEventListener("click", (e) => {
-    console.log(empInChange)
     var fname = document.getElementById('fname').value
     var lname = document.getElementById('lname').value
     var email = document.getElementById('email').value
@@ -82,14 +83,24 @@ saveBtn.addEventListener("click", (e) => {
     document.getElementById('add-btn').classList.remove('hide')
     document.getElementById('save-btn').classList.add('hide')
 
-    alert("Employee details changes")
+    alert("Employee details changed")
+    //HANDLING SAVE BUTTON IN LOCAL_STORAGE
+    var empData = {}
+    empData["fname"] = fname
+    empData["lname"] = lname
+    empData["email"] = email
+    empData["gender"] = gender
+    empData["mobile"] = mobile
+
+    saveToLocal(empData)
+
     emptyForm()
     e.preventDefault()
 })
 //EMPTY FORM
 function emptyForm() {
     document.getElementById('fname').value = ""
-    document.getElementById('lname').value  = ""
+    document.getElementById('lname').value = ""
     document.getElementById('email').value = ""
     document.getElementById('gender').value = ""
     document.getElementById('mobile').value = ""
@@ -105,17 +116,43 @@ function editEmp(ele) {
     var gender = empToEdit.querySelector('.gender').innerHTML
     var mobile = empToEdit.querySelector('.mobile').innerHTML
     document.getElementById('fname').value = fname
-    document.getElementById('lname').value  = lname
+    document.getElementById('lname').value = lname
     document.getElementById('email').value = email
     document.getElementById('gender').value = gender
     document.getElementById('mobile').value = mobile
-    
+
     document.getElementById('fname').focus()
     document.getElementById('add-btn').classList.add('hide')
     document.getElementById('save-btn').classList.remove('hide')
+    //HANDLING EMP DETAILS IN LOCAL
+    localStorage.removeItem(email)
 }
 //DELETE EMP
 function deleteEmp(ele) {
     var empToDelete = ele.parentElement.parentElement
+    var uid = empToDelete.querySelector(".email").innerHTML
+    deleteInLocal(uid)
     empToDelete.remove()
+    alert("Employee deteted")
+}
+
+//HANDLING EMP DETAILS IN LOCAL
+
+//LOADING DETAILS FROM LOCAL ON PAGE LOAD
+loadFromLocal()
+function loadFromLocal() {
+    for(key in localStorage) {
+        createEmp(JSON.parse(localStorage.getItem(key)))
+    }
+}
+//ADDING EMP DETAILS IN LOCAL
+function saveToLocal(empData) {    
+    var uid = empData.email
+    var dataToAdd = {}
+    dataToAdd[uid] = empData
+    localStorage.setItem(uid, JSON.stringify(empData))
+}
+//DFELETE IN LOCAL
+function deleteInLocal(uid) {
+    localStorage.removeItem(uid)
 }
