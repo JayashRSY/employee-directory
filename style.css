@@ -5,3 +5,6 @@
 .hide {
     display: none;
 }
+form {
+    width: 350px;
+}

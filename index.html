@@ -5,18 +5,18 @@
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">    
+    <link rel="stylesheet" href="style.css">
     <title>Employee Directory</title>
 </head>
 
-<body>
-    <header class="text-bg-dark p-2 text-center">
-        <h4>Gemini Solutions</h4>
-    </header>
+<body class="bg-danger">
 
     <main class="row">
         <div class="col-md-12 col-lg-6 bg-danger d-flex justify-content-center">
-            <form class="bg-dark m-5 p-5" style="height: 380px; width: 350px;">
+            <form class="bg-dark m-5 p-5">
+                <div class="row my-2 text-bg-dark text-center">
+                    <h3>Gemini Solutions</h3>
+                </div>
                 <div class="row my-2">
                     <input id="fname" class="form-control" type="text" placeholder="First name (Required)">
                 </div>
@@ -42,43 +42,25 @@
                 </div>
             </form>
         </div>
-        <div class="col-md-12 col-lg-6 bg-warning">
-            <div class="table-responsive"></div>
-            <table class="table bg-info">
-                <thead>
-                    <tr>
-                        <th scope="col">First Name</th>
-                        <th scope="col">Last Name</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Gender</th>
-                        <th scope="col">Mobile No</th>
-                        <th scope="col">Actions</th>
-                    </tr>
-                </thead>
-                <tbody id="table-body">
-                    <tr>
-                        <td class="fname">John</td>
-                        <td class="lname">Rakon</td>
-                        <td class="email">johnrakon @gmail.com</td>
-                        <td class="gender">Male</td>
-                        <td class="mobile">8077151158</td>
-                        <td class="text-center">
-                            <img class="actions"src="img/edit.png" alt="edit" onclick="editEmp(this)"> <img class="actions" src="img/bin.png" alt="delete" onclick="deleteEmp(this)">
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Arya</td>
-                        <td>Singh</td>
-                        <td>ram124 @gmail.com</td>
-                        <td>Female</td>
-                        <td>5461239782</td>
-                        <td class="text-center">
-                            <img class="actions"src="img/edit.png" alt="edit" onclick="editEmp(this)"> <img class="actions" src="img/bin.png" alt="delete" onclick="deleteEmp(this)">
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+        <div class="col-md-12 col-lg-6 pt-5  d-flex justify-content-center">
+            <!-- RESPONSIVE TABLE WITH DEDICATED SCROLLBAR -->
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">First Name</th>
+                            <th scope="col">Last Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Gender</th>
+                            <th scope="col">Mobile No</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body">
+                        <!-- TABLE IN WHICH DATA WILL BE ADDED -->
+                    </tbody>
+                </table>
+            </div>
         </div>
     </main>
 
